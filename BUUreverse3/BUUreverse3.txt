@@ -1,0 +1,30 @@
+BUUCTF reverse3
+studyPE发现无壳，直接IDA
+打开软件非常简单，输入正确的flag就可以
+通过代码审计，发现if ( !strncmp(Destination, Str2, v5) )
+str2为e3nifIH9b_C@n@dH
+反向推Destination
+有关的代码
+strncpy(Destination, v4, 0x28u);
+  v11 = j_strlen(Destination);
+  for ( j = 0; j < v11; ++j )
+    Destination[j] += j;
+发现对Destination中的每个字符进行变换：每个字符加上其索引值
+
+text = "e3nifIH9b_C@n@dH"
+ascii_list = [ord(c) for c in text]
+print(ascii_list)
+for i in range(0, len(ascii_list)):
+    ascii_list[i] = ascii_list[i] - i
+print(ascii_list)
+txt=[chr(c) for c in ascii_list]
+print(txt)
+word=""
+for c in txt:
+    word += c
+print(word)
+用此代码还原出v4=e2lfbDB2ZV95b3V9
+我们输入的字符串经过v4 = (const char *)sub_4110BE(Str, v3, v14);
+查看sub_4110BE为base64加密
+使用网页端对v4解密
+得到flag{i_l0ve_you}

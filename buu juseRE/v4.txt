@@ -1,0 +1,6 @@
+Writeup JUSTRE
+很简单，主函数没发现有用的，探索别的函数
+函数sub_4010C0中
+mad不写了，就藏一个函数里有啥好写的
+DialogFunc里sprintf(String, " BJD{%d%d2069a45792d233ac}", 19999, 0);
+转化一下就是flag  BJD{1999902069a45792d233ac}
